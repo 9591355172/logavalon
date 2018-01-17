@@ -1,0 +1,77 @@
+
+<head>
+  <meta charset="utf-8">
+  <title>Daily UI - Day 1 Sign In</title>
+
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="app/assets/stylesheets/animate.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="app/assets/stylesheets/style.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+
+
+<body style="background-image:url('https://i0.wp.com/res.cloudinary.com/aleteia/image/fetch/c_fill,g_auto,w_620,h_310/https://aleteiaen.files.wordpress.com/2016/10/transhuman1-use-this-for-article.jpg?resize=620%2C310&quality=100&strip=all&ssl=1')">
+  <div class="container">
+    <div class="top">
+        <h1 id="title" class="hidden"><span id="logo">AVALON</span></h1>
+    </div>
+    <div class="login-box animated fadeInUp">
+          <div class="box-header" color="Blue">
+             <font color="black"><h2>Log In</h2></font>
+          </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+           <%= f.label :email, class: "control-label col-sm-10" %><br />
+           <div class="col-sm-12"><%= f.email_field :email, autofocus: true,class: "form-control"  %></div>
+         </div>
+
+         <div class="form-group">
+          <%= f.label :password, class: "control-label col-sm-10" %><br />
+          <div class="col-sm-12"><%= f.password_field :password, autocomplete: "off", class: "form-control" %></div>
+         </div>
+
+         <% if devise_mapping.rememberable? %>
+         <div class="field">
+          <div class="col-sm-12"> <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+         </div>
+         <% end -%>
+  
+      <div class="actions">
+        <div class="col-sm-offset-5 col-sm-12">
+          <%= f.submit "LOG IN" %><br>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</body>
+
+
+<script>
+  $(document).ready(function () {
+      $('#logo').addClass('animated fadeInDown');
+      $("input:text:visible:first").focus();
+  });
+  $('#email').focus(function() {
+    $('label[for="email"]').addClass('selected');
+  });
+  $('#email').blur(function() {
+    $('label[for="email"]').removeClass('selected');
+  });
+  $('#password').focus(function() {
+    $('label[for="password"]').addClass('selected');
+  });
+  $('#password').blur(function() {
+    $('label[for="password"]').removeClass('selected');
+  });
+</script>

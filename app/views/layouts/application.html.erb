@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "signup" %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+<%= favicon_link_tag asset_path('http://www.avalonlabs.co/images/avalonlogo.png'), :rel => 'icon', :type =>  'image/png' %>
+  <body align="center">
+		
+    <%= yield %>
+  	   <div class="container col-sm-10" align="right" >
+       <p class="notice"><%= notice %></p>
+       <font color="white"> <p class="alert"><%= alert %></p></font>
+       </div>
+  </body>
+</html>

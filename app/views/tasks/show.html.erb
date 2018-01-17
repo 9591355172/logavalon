@@ -1,0 +1,45 @@
+<body style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBBEXXmQ3THutGt2YCWLPfc3bG7hpDl8lpA5qCN1Pp8fiwT04X7g)">
+
+
+	<%= render :template => "/home/nav" %>
+ <div class="container">
+	<table class = "table" style="background-image: url(http://www.bestcoaching.com.mx/cartas/wp-content/uploads/2016/01/black-background-92475-1024x640.jpg)">
+ 	<thead align="center">
+		<tr>
+		<th>
+			<font color="grey"><b>Task</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>Start Time</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>End Time</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>Time Taken</b></font>
+		</th>
+		</tr>
+	</thead>
+	
+	<tbody align="center">
+		<tr>
+			<td>
+				<%= @task.what_to_do %><br />
+			</td>
+			<td>
+				<font color="white">(<%= (@task.created_at).localtime.to_date.strftime("%B %d %Y") %></font> at <font color="white"><%= (@task.created_at).localtime.in_time_zone('Asia/Kolkata').strftime("%I:%M %P") %> )</font><br>
+			</td>
+			<td>
+				<font color="white">(<%= (@task.updated_at).localtime.to_date.strftime("%B %d %Y")%></font> at <font color="white"><%= (@task.updated_at).localtime.in_time_zone('Asia/Kolkata').strftime("%I:%M %P") %> )</font><br>
+			</td>
+			<td>
+				<%= @minute %> hours
+			</td>
+			
+		</tr>
+	</tbody>
+	
+</table>
+</div>
+</body>
+	

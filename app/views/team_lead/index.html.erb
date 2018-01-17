@@ -1,0 +1,51 @@
+<body style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBBEXXmQ3THutGt2YCWLPfc3bG7hpDl8lpA5qCN1Pp8fiwT04X7g)">
+
+<%= render :template => "/home/nav" %>
+<div class="container">
+	<table class = "table" style="background-image: url(http://www.bestcoaching.com.mx/cartas/wp-content/uploads/2016/01/black-background-92475-1024x640.jpg)">
+	 <thead align="center">	<tr>
+	 		<th>
+			<font color="grey"><b>NAME</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>DEPARTMENT</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>ACTION</b></font>
+		</th>
+	 	</tr>
+	 </thead>
+	 	<% @users.each do |user| %>
+		 	<% @department = user.dept_name%>
+		 	<% @current_department = @current_user.dept_name%>
+		 	<% if logged_in?(:manager)%>
+				<% if @current_department == @department%>
+					<tr>
+			 			<td align="center">
+			 			<font color="white">	<%=user.name%> </font>
+			 			</td>
+			 			<td align="center">
+			 			<font color="white">	<%= @department%>	 		</font>		
+			 			</td>
+			 			<td align="center" colspan="3">
+			 				<%=link_to "View",team_lead_path(user)%>
+			 			</td>
+	 				</tr>
+				<%end%>
+			<% else%>
+				<tr>
+		 			<td align="center">
+		 			<font color="white">	<%=user.name%></font>
+		 			</td>
+		 			<td align="center">
+		 			<font color="white">	<%= @department%>	 	</font>			
+		 			</td>
+		 			<td align="center" colspan="3">
+		 				<%=link_to "View" ,team_lead_path(user)%>
+		 			</td>
+ 				</tr>
+			<%end%>
+	 	<%end%>
+	 </table>
+	</div>
+</body>

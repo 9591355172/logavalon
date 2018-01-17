@@ -1,0 +1,93 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Spectre sign up form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="app/assets/stylesheets/signup.css">
+
+  
+</head>
+
+<body>
+
+  <div class="signup__container">
+    <div class="container__child signup__thumbnail">
+     <div class="thumbnail__logo">
+     <svg class="logo__shape" width="25px" viewBox="0 0 634 479" xmlns="http://www.w3.org/2000/svg"></svg>
+       
+     </div>
+    <div class="thumbnail__content text-center col-sm-10">
+      <font color="lightblue"><h1 class="heading--primary">WELCOME TO AVALON</h1></font>
+    </div>
+    
+    
+  </div>
+<div class="container__child signup__form" >
+  <body bgcolor="black">
+<font color="white"><div align="center"><h2>Sign up</h2></div></font>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group" align="center">
+   <font color="black"> <%= f.label :name %><br /></font>
+    <%= f.text_field :name,:size =>35,  autofocus: true %>
+  </div>
+
+  <div class="form-group" align="center">
+   <font color="black"> <%= f.label :email %><br /></font>
+    <font color="black"><%= f.email_field :email, :size =>35, autofocus: true %></font>
+  </div>
+
+  <div class="form-group" align="center">
+   <font color="black"> <%= f.label :password %></font>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password,:size =>35,  autocomplete: "off" %>
+  </div>
+
+  <div class="form-group" align="center">
+    <%=f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, :size =>35, autocomplete: "off" %>
+  
+  </div>
+
+  <div class="form-group" align="center">
+    <%= f.label "When do you want to get reminded?" %><br />
+     <font color="black"><%= f.time_field :timings, :size =>35, placeholder: "Start time" %>
+   
+  </div>
+
+  <div class="form-group" align="center">
+    <%= f.label "When does your office get over?" %><br />
+    <font color="black"><%= f.time_field :timings_end, :size =>35, placeholder: "End time"%>
+  </div>
+
+  <div class="form-group" align="center">
+    <%= f.label "Department" %><br />
+   <font color="black"> <%= f.select :dept_name, options_for_select([['Developer'], ['Marketing'], ['UI/UX'], ['Sales'], ['Legal']]), class: "form-control" %></font>
+  </div>
+
+  <div class="actions" align="center">
+   <font color="black"> <%= f.submit "Sign up" %></font>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+</body>
+</div>
+</div>
+</body>
+
+
+
+

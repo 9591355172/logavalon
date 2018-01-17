@@ -1,0 +1,137 @@
+<!-- <h1> Welcome  <%= current_user.name%></h1> -->
+<head>  
+<meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+</head>
+
+
+<body style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBBEXXmQ3THutGt2YCWLPfc3bG7hpDl8lpA5qCN1Pp8fiwT04X7g)">
+	<%= render :template => "/home/nav" %>
+
+<header>
+<% if logged_in?(:admin, :manager)%>
+	<font color="white">USERS LINK: <%= link_to "view users", team_lead_index_path(User.all.ids) %></font> <br>
+<%end%>
+</header>
+
+
+<br>
+<br>
+<div class="container" align="center">
+	<%if(@tasks_perday.present?)%>
+		<font color="white">Tick what you have achieved today: </font>
+	<%end%>
+<%if(@tasks_perday.present?) %>
+
+		<div class = "form-group">
+			<% @tasks_perday.each do |task|%>
+				<% if task.checkbox== false %>
+					<input type="checkbox" id="checkbox-users-show" onclick="sendCheckRequest(<%=task.id%>)">
+						</font><font color="white"><%=task.what_to_do%><br></font>
+				<%end%>
+				
+			<%end%>
+		</div>
+	 	
+	<%=form_for(:task, url: tasks_path) do |f| %>
+		<div class = "form-group">
+			<font color="white"><%=f.label "ADD MORE TASKS"%></font>
+			<font color="white"><%=f.text_field :what_to_do, id: "what_to_do-form-field", class: "form-control"%></font>
+		</div>
+		<%=f.submit :Submit, class: "btn btn-primary"%>
+	<%end%>
+
+
+<%else%>
+
+	<%=form_for(:task, url: tasks_path) do |f| %>
+		<div class = "form-group">
+			<font color="white"><%=f.label "TASKS FOR TODAY"%></font>
+			<font color="white"><%=f.text_field :what_to_do, id: "what_to_do-form-field", class: "form-control"%></font>
+			
+		</div>
+		<%=f.submit :Submit, class: "btn btn-primary"%>
+	<%end%>
+
+<% end %>
+
+</div>
+<br>
+
+<div class="container" >
+<table class = "table" style="background-image: url(http://www.bestcoaching.com.mx/cartas/wp-content/uploads/2016/01/black-background-92475-1024x640.jpg)" >
+	<thead align="center">
+		<tr>
+		<th> 
+			<font color="grey"><b>DATE</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>SCHEDULED TASK</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>END TASK</b></font>
+		</th>
+		</tr>
+	</thead>
+	
+	<% @dates.each do |date| %>
+	<tbody align="center">
+		<tr>
+			<td>
+				<font color="grey">	<%= date[0].to_date.strftime("%B %d %Y") %> </font>
+			</td>
+
+			<td align="center">
+				<%@tasks.where(date: date).each do |task|%> 
+				 
+				 	<font color="white"><%=task.what_to_do%></font></br>
+				    <font color="grey">  </font> <font color="grey" align="center"><%= (task.created_at).localtime.in_time_zone('Asia/Kolkata').strftime("%I:%M %P") %> </font><br>
+				 
+				<%end%>
+			</td>
+	
+			<td>
+				<%@tasks.where(completed: date).each do |task|%>
+				<%if(task.checkbox)%>
+				  
+					<%= link_to task.what_to_do , task_path(task.id), :class => "submit_button", :onclick => 'return openPopup(this);' %><br>
+					<!-- <font color="grey" align="center">Started at:<%= (task.created_at).localtime.to_date.strftime("%B %d %Y")%> <%=(task.created_at).localtime.strftime("%I:%M %P") %> <br> End Time:<%= (task.updated_at).localtime.strftime("%I:%M %P") %></font> -->
+					<!-- <font color="grey">(<%= (task.updated_at).localtime.to_date.strftime("%B %d %Y")%></font> <font color="grey"><%= (task.updated_at).localtime.strftime("%I:%M %P") %> )</font><br> -->
+					
+				<%end%>
+				<%end%>
+			</td>
+		</tr>
+	</tbody>
+	<%end%>
+</table>
+</div>
+</body>
+<script type="text/javascript">
+	function sendCheckRequest(taskId){
+		console.log("Logged task ID "+taskId);
+	$.ajax({
+		url: '../insert_checkbox',
+		type: "GET",
+		data: {'task_id': taskId},
+		dataType: "json",
+		// success: function(data){
+		// 	alert("Success");
+		// },
+		// error: function(data){
+		// 	alert('Failure');
+		// 	console.log(data.responseText);
+		// }
+	});
+	location.reload();
+}
+
+
+
+
+
+</script>

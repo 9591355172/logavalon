@@ -1,0 +1,91 @@
+
+<!-- <head>
+  
+  <link rel="stylesheet" href="app/assets/stylesheets/navbar.css">
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <div class='container-fluid' bgcolor="black">
+    <a class="navbar-brand" bgcolor="black">
+    AVALON
+    
+  </a>
+    <a class='navbar-brand' >
+      <span class='bright' style="color:black"><%= current_user.name %>'s LOG</span>
+    </a> 
+    
+    <ul class="nav navbar-nav navbar-right" ><span class="glyphicon glyphicon-user"></span>
+      <% if logged_in?(:admin, :manager)%>
+        <li class="nav-item">
+         <%= link_to 'Home', root_path, class: "nav-link #{yield(:blog_active)}" %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %>
+      </li>
+      
+      
+    </ul>
+  </div>
+</nav> -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<title>Horizontal Navigation Bar w/Rollover Effect</title> 
+<style type="text/css"> 
+<!-- 
+ 
+ #navbar ul { 
+  margin: 0; 
+  padding: 5px; 
+  list-style-type: none; 
+  text-align: center; 
+  background-color: black; 
+  } 
+ 
+#navbar ul li {  
+  display: inline; 
+  } 
+ 
+#navbar ul li a { 
+  text-decoration: none; 
+  padding: .2em 1em; 
+  color: #fff; 
+  background-color: black; 
+  } 
+ 
+#navbar ul li a:hover { 
+  color: #000; 
+  background-color: grey; 
+  } 
+ 
+--> 
+</style> 
+</head> 
+<body> 
+<div id="navbar"> 
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;" >
+    <div class="container-fluid">
+    <a class="navbar-brand" bgcolor="black">
+      <img src="http://www.avalonlabs.co/images/avalonlogo.png" class="img-fluid" style="height: auto; width: 27px; display:inline-block;">
+     <font color="white">AVALON</font>
+    </a>
+     <a class='navbar-brand' >
+      <!-- <img src="http://www.avalonlabs.co/images/avalonlogo.png" class="img-fluid" style="height: auto; width: auto; display:inline-block;"> -->
+     <font color="white"><span class='bright' style="color:black"><font color="white"><%= current_user.name.upcase %>'s LOG</font></span>
+    </a> 
+  <ul class="nav navbar-nav navbar-right"> 
+  <% if logged_in?(:admin, :manager)%>
+        <li class="nav-item">
+         <%= link_to 'Home', root_path, class: "nav-link #{yield(:blog_active)}" %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %>
+      </li>
+  </ul> 
+  </div>
+</nav>
+</div> 
+</body> 
+</html>

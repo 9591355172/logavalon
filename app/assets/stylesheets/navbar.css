@@ -1,0 +1,28 @@
+ .navbar {
+    border-radius: 0;
+    margin-bottom: 20px;
+    
+    
+    .navbar-brand {
+        font-weight: bolder;
+        font-color: red;
+        .light {
+            font-weight: 300;
+            font-color: black;
+        }
+    }
+    .navbar-toggler {
+        outline: none;
+    }
+}
+.collapse-bg {
+    padding: 0 !important;
+    .card {
+        margin-bottom: 0;
+        border-radius: 0;
+        border: none;
+    }
+}
+
+
+

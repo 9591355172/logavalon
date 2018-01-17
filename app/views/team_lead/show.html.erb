@@ -1,0 +1,56 @@
+<body style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBBEXXmQ3THutGt2YCWLPfc3bG7hpDl8lpA5qCN1Pp8fiwT04X7g)">
+
+
+	<%= render :template => "/home/nav" %>
+ <div class="container">
+	<table class = "table" style="background-image: url(http://www.bestcoaching.com.mx/cartas/wp-content/uploads/2016/01/black-background-92475-1024x640.jpg)">
+ 	<thead align="center">
+		<tr>
+		<th>
+			<font color="grey"><b>Date</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>TASKS</b></font>
+		</th>
+		<th>
+			<font color="grey"><b>TASKS DONE</b></font>
+		</th>
+		</tr>
+	</thead>
+	<% @dates.each do |date| %>
+	<tbody align="center">
+		<tr>
+			<td>
+				<font color="grey">	<%= date[0].to_date.strftime("%B %d %Y") %> </font>
+			</td>
+			<td>
+				<%@tasks.where(date: date).each do |task|%> 
+				 <% if task.what_to_do != "previousdate" %>
+				 	<font color="white"><%=task.what_to_do%></font></br>
+				    <font color="grey">(<%= (task.created_at).localtime.to_date.strftime("%B %d %Y") %></font> <font color="grey"><%= (task.created_at).localtime.strftime("%I:%M %P") %> )</font><br>
+				
+				<%end%>
+
+				<%end%>
+			</td>
+				
+			<td>
+				<%@tasks.where(date: date).each do |task|%>
+				<%if(task.checkbox)%>
+				 <%if task.what_to_do == 'previousdate'%>
+					<font color="white"><%=task.what_done%></font><br>
+					<font color="grey">(<%= (task.updated_at).localtime.to_date.strftime("%B %d %Y")%></font> <font color="grey"><%= (task.updated_at).localtime.strftime("%I:%M %P") %> )</font><br>
+				<%else%>
+					<font color="white"><%=task.what_to_do%></font><br>
+					<font color="grey">(<%= (task.updated_at).localtime.to_date.strftime("%B %d %Y")%></font> <font color="grey"><%= (task.updated_at).localtime.strftime("%I:%M %P") %> )</font><br>
+					<%end%>
+				<%end%>
+				<%end%>
+			</td>
+		</tr>
+	</tbody>
+	<%end%>
+</table>
+</div>
+</body>
+	
