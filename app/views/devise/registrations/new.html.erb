@@ -61,19 +61,12 @@
   </div>
 
   <div class="form-group" align="center">
-    <%= f.label "When do you want to get reminded?" %><br />
-     <font color="black"><%= f.time_field :timings, :size =>35, placeholder: "Start time" %>
-   
-  </div>
-
-  <div class="form-group" align="center">
-    <%= f.label "When does your office get over?" %><br />
-    <font color="black"><%= f.time_field :timings_end, :size =>35, placeholder: "End time"%>
-  </div>
-
-  <div class="form-group" align="center">
-    <%= f.label "Department" %><br />
-   <font color="black"> <%= f.select :dept_name, options_for_select([['Developer'], ['Marketing'], ['UI/UX'], ['Sales'], ['Legal']]), class: "form-control" %></font>
+    <%=f.label :department_id,"Select your department"%><br>
+    <font color="black"><%=f.select :department_id, options_for_select([
+      ["DEVELOPER", "1"],
+      ["MARKETING", "2"],
+      ["SALES", "3"],
+      ["LEGAL", "4"]])%></font>
   </div>
 
   <div class="actions" align="center">

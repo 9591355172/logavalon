@@ -18,14 +18,7 @@ class HomeController < ApplicationController
   		redirect_to root_path
 	  end
 
-    def validate_user
-    @params_id = params[:id]
-    @user_links = current_user.links
-    unless @user_links.find_by(id: @params_id)
-      flash[:alert] = "You are not allowed to view that page since you are not the user."
-      redirect_to root_path
-    end
-  end
+   
 
 end
 

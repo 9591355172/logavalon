@@ -75,7 +75,7 @@
      <font color="white"><span class='bright' style="color:black"><font color="white"><%= current_user.name.upcase %>'s LOG</font></span>
     </a> 
   <ul class="nav navbar-nav navbar-right"> 
-  <% if logged_in?(:admin, :manager)%>
+      <% if logged_in?(:admin, :manager)%>
         <li class="nav-item">
          <%= link_to 'Home', root_path, class: "nav-link #{yield(:blog_active)}" %>
         </li>

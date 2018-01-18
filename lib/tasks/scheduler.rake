@@ -10,13 +10,17 @@ namespace :scheduler do
 			emails.each do |mail|
 				puts "Updating feed..."
 				@user = User.where(email: mail).first
-				timing_end = @user.timings_end
+				timing = @user.department.timings
+				timing_end = @user.department.timings_end
 				d = Date.today
-				t_utc = timing_end
-				t_itc = t_utc.in_time_zone('Asia/Kolkata')
-				t_itc -= t_itc.utc_offset
-				dt = DateTime.new(d.year, d.month, d.day, t_itc.hour, t_itc.min, t_itc.sec, t_itc.zone)
+				timing_itc = timing.in_time_zone('Asia/Kolkata')
+				timing_end_itc = timing_end.in_time_zone('Asia/Kolkata')
+				timing_itc -= timing_itc.utc_offset
+				timing_end_itc -= timing_end_itc.utc_offset
+				dt = DateTime.new(d.year, d.month, d.day, timing_itc.hour, timing_itc.min, timing_itc.sec, timing_itc.zone)
+				dt_end = DateTime.new(d.year, d.month, d.day, timing_end_itc.hour, timing_end_itc.min, timing_end_itc.sec, timing_end_itc.zone)
   				SendMailMailer.sample_email(mail).deliver_later(wait_until: dt)
+  				SendMailMailer.sample_email(mail).deliver_later(wait_until: dt_end)
 				puts "done."
 			end
 

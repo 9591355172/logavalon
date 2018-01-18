@@ -14,4 +14,6 @@ class TeamLeadController < ApplicationController
 	  	@dates = @tasks.order(:date).group(:date).count
 	  	@tasks_perday = @tasks.where(date: Time.now.strftime("%d/%m/%Y"))
 	end
+
+	
 end

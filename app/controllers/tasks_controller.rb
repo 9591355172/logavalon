@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+ class TasksController < ApplicationController
  	before_action :validate_user, :only => [:show]
   def create
   	params[:task][:what_to_do].each_line.each do |task|
