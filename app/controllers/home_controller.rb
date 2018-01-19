@@ -4,8 +4,9 @@ class HomeController < ApplicationController
 		if (user_signed_in?)
       		 @user=current_user
      		 @tasks = current_user.tasks
-     		 @date = @tasks.order(:date).group(:date)
-     		 @dates = @date.where.not(completed: nil).count
+     		 # @date = @tasks.order(:date).group(:date)
+     		 # @dates = @date.where.not(completed: nil).count
+         @dates = @tasks.order(:date).map(&:date).uniq
      		 @tasks_perday = @tasks
      
   		else
