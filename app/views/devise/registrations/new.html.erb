@@ -62,11 +62,11 @@
 
   <div class="form-group" align="center">
     <%=f.label :department_id,"Select your department"%><br>
-    <font color="black"><%=f.select :department_id, options_for_select([
+    <%=f.select :department_id, options_for_select([
       ["DEVELOPER", "1"],
       ["MARKETING", "2"],
       ["SALES", "3"],
-      ["LEGAL", "4"]])%></font>
+      ["LEGAL", "4"]])%>
   </div>
 
   <div class="actions" align="center">

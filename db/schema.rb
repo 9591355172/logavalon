@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118115130) do
+ActiveRecord::Schema.define(version: 20180119060116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180118115130) do
     t.text "user_id"
     t.text "what_to_do"
     t.text "what_done"
-    t.boolean "checkbox"
+    t.boolean "checkbox", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "date"
