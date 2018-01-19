@@ -14,8 +14,8 @@
 
 <header align="center">
 <% if logged_in?(:admin, :manager)%>
-	<font color="white">USERS LINK: <%= link_to "view users", team_lead_index_path(User.all.ids) %></font> <br>
-	<font color="white">CHANGE TIMINGS: <%=link_to "edit timings" , department_change_time_path%></font><br>
+	<font color="white">USERS LINK: <%= link_to "View Users", team_lead_index_path(User.all.ids) %></font> <br>
+	<%=link_to "CHANGE TIMINGS" , department_change_time_path%><br>
 <%end%>
 </header>
 
