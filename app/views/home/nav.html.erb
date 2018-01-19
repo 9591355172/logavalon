@@ -75,13 +75,23 @@
      <font color="white"><span class='bright' style="color:black"><font color="white"><%= current_user.name.upcase %>'s LOG</font></span>
     </a> 
   <ul class="nav navbar-nav navbar-right"> 
-      <% if logged_in?(:admin, :manager)%>
+    <li class="nav-item">
+         <%= link_to 'HOME', root_path, class: "nav-link #{yield(:blog_active)}" %>
+        </li>
+              <% if logged_in?(:admin, :manager)%>
         <li class="nav-item">
-         <%= link_to 'Home', root_path, class: "nav-link #{yield(:blog_active)}" %>
+         <%= link_to 'USERS', team_lead_index_path, class: "nav-link #{yield(:blog_active)}" %>
         </li>
       <% end %>
+    <% if logged_in?(:admin, :manager)%>
+        <li class="nav-item">
+         <%= link_to 'TIMINGS', department_change_time_path, class: "nav-link #{yield(:blog_active)}" %>
+        </li>
+      <% end %>
+
+       
       <li class="nav-item">
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %>
+        <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete, class: "nav-link" %>
       </li>
   </ul> 
   </div>
