@@ -1,5 +1,6 @@
  class TasksController < ApplicationController
  	before_action :validate_user, :only => [:show]
+ 	before_action :validate_checkbox, :only => [:set_checkbox]
 
   def create
   	params[:task][:what_to_do].each_line.each do |task|
@@ -45,10 +46,8 @@
 		task = Task.find(params[:task_id])
 		
 		# if(Department.task.find(task.id))
-			if(task.checkbox == true)
-				 task.update!(checkbox: false,completed: Time.now.strftime("%d/%m/%Y"))
-	    	else
-	    		task.update!(checkbox: true, completed: Time.now.strftime("%d/%m/%Y"))
+			if(task.checkbox == false)
+				 task.update!(checkbox: true,completed: Time.now.strftime("%d/%m/%Y"))
 	    	end
 
 
@@ -64,7 +63,16 @@
 		end
 	end
 
-	
+	def validate_checkbox
+
+		task =Task.find(params[:task_id])
+		@user_tasks = current_user.tasks
+		unless @user_tasks.find(task.id)
+			flash[:alert] = "You are not allowed to view that page since you are not the user."
+			redirect_to root_path
+		end
+	end
+
 		
 	
 end
