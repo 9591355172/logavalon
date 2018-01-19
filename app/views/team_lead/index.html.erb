@@ -17,7 +17,8 @@
 	 	</tr>
 	 </thead>
 	 	<% @users.each do |user| %>
-		 	<% @department = user.dept_name%>
+		 	<% @department_id = user.department_id%>
+		 	<% dept_name = Department.find(@department_id).dept_name %>
 		 	<% @current_department = @current_user.dept_name%>
 		 	<% if logged_in?(:manager)%>
 				<% if @current_department == @department%>
@@ -26,7 +27,7 @@
 			 			<font color="white">	<%=user.name%> </font>
 			 			</td>
 			 			<td align="center">
-			 			<font color="white">	<%= @department%>	 		</font>		
+			 			<font color="white">	<%= dept_name%>	 		</font>		
 			 			</td>
 			 			<td align="center" colspan="3">
 			 				<%=link_to "View",team_lead_path(user)%>
@@ -39,7 +40,7 @@
 		 			<font color="white">	<%=user.name%></font>
 		 			</td>
 		 			<td align="center">
-		 			<font color="white">	<%= @department%>	 	</font>			
+		 			<font color="white">	<%= dept_name%>	 	</font>			
 		 			</td>
 		 			<td align="center" colspan="3">
 		 				<%=link_to "View" ,team_lead_path(user)%>
