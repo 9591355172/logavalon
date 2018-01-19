@@ -48,7 +48,10 @@
 		# if(Department.task.find(task.id))
 			if(task.checkbox == false)
 				 task.update!(checkbox: true,completed: Time.now.strftime("%d/%m/%Y"))
-	    	end
+	    
+	    else
+	    	redirect_to root_path
+	  	end
 
 
 	end
