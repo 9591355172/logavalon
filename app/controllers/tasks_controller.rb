@@ -42,7 +42,7 @@
 
 	def set_checkbox
 
-		# task = Task.find(params[:task_id])
+		task = Task.find(params[:task_id])
 		
 		# if(Department.task.find(task.id))
 			if(task.checkbox == true)
