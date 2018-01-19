@@ -88,10 +88,10 @@
 
 			<td align="center">
 				<%@tasks.where(date: date).each do |task|%> 
-				 
+				 <% if !(task.checkbox)%>
 				 	<font color="white"><%=task.what_to_do%></font></br>
 				    <font color="grey">  </font> <font color="grey" align="center"><%= (task.created_at).localtime.in_time_zone('Asia/Kolkata').strftime("%I:%M %P") %> </font><br>
-				 
+				 <%end%>
 				<%end%>
 			</td>
 	
