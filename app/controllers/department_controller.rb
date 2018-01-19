@@ -10,7 +10,7 @@ class DepartmentController < ApplicationController
     end
 
 	def change_time
-		@departments = Department.find(params[:id])
+		@departments = Department.find(params[:department][:id])
 		if(@departments.update(params.require(:department)
 								.permit(:timings, :timings_end)))
 		redirect_to department_change_time_url	

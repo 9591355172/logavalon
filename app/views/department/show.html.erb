@@ -31,13 +31,15 @@
 			<td align="center">
 				<%=form_for(:department, url: department_path) do |f| %>
 				<%= f.time_select :timings, :value => d.timings, :default => d.timings %>
-				<%=f.submit :Submit, class: "btn btn-primary", name: "id",:value => d.id %>
+				<%= f.hidden_field :id, :value => d.id %>
+				<%=f.submit :Change, class: "btn btn-primary" %>
 				<%end%>
 			</td>
 			<td>
 				<%=form_for(:department, url: department_path) do |f| %>
 				<%= f.time_select :timings_end, :value => d.timings_end, :default => d.timings_end %>
-				<%=f.submit :Submit, class: "btn btn-primary", name: "id",:value => d.id %>
+				<%= f.hidden_field :id, :value => d.id %>
+				<%=f.submit :Change, class: "btn btn-primary" %>
 				<%end%>
 			</td>
 			<td>
